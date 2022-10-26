@@ -29,6 +29,7 @@ class FileHelpers {
     }
 }
 
+//This Handler class checks if the file name has what was searched for 
 class Handler implements URLHandler {
     List<File> files;
     Handler(String directory) throws IOException {
@@ -61,6 +62,41 @@ class Handler implements URLHandler {
        }
     }
 }
+
+//This is the Handler that checks if any file contains the string you search for WITHIN the file
+// class Handler implements URLHandler {
+//     List<File> files;
+//     Handler(String directory) throws IOException {
+//       this.files = FileHelpers.getFiles(Paths.get(directory));
+//     }
+//     public String handleRequest(URI url) throws IOException {
+//        List<File> paths = FileHelpers.getFiles(Paths.get("./technical"));
+//        if (url.getPath().equals("/")) {
+//            return String.format("There are %d total files to search.", paths.size());
+//        } else if (url.getPath().equals("/search")) {
+//            String[] parameters = url.getQuery().split("=");
+//            if (parameters[0].equals("q")) {
+//                String result = "";
+//                List<String> foundPaths = new ArrayList<>();
+//                for(File f: paths) {
+//                    if(FileHelpers.readFile(f).contains(parameters[1])) {
+//                        foundPaths.add(f.toString());
+//                    }
+//                }
+//                Collections.sort(foundPaths);
+//                result = String.join("\n", foundPaths);
+//                return String.format("Found %d paths:\n%s", foundPaths.size(), result);
+//            }
+//            else {
+//                return "Couldn't find query parameter q";
+//            }
+//        }
+//        else {
+//            return "Don't know how to handle that path!";
+//        }
+//     }
+// }
+
 
 class DocSearchServer {
     public static void main(String[] args) throws IOException {
